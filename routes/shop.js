@@ -5,7 +5,8 @@ const router = express.Router();
 const rootDir = require("../util/path");
 
 router.get("/", (req, res, next) => {
-  //   console.log("in another middleware!");
+  // console.log("in another middleware!");
+  // console.log(req.body);
   res.sendFile(path.join(rootDir, "views", "shop.html"));
 });
 
