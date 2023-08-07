@@ -9,6 +9,8 @@ const adminRouter = require("./routes/admin");
 const contactRouter = require("./routes/contact");
 const rootDir = require("./util/path");
 
+const errorPageController = require("./controller/error404");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, "public")));
 
@@ -16,10 +18,6 @@ app.use("/admin", adminRouter);
 app.use("/shop", shopRouter);
 app.use(contactRouter);
 
-app.use((req, res, next) => {
-  // res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
-
-  res.status(404).sendFile(path.join(rootDir, "views", "404.html"));
-});
+app.use(errorPageController.errorPage);
 
 app.listen(3000);
